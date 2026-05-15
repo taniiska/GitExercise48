@@ -103,15 +103,14 @@
 
   <script>
     const mockFacilities = [
-      { id: 1, title: 'Library Discussion Rooms', capacity: 8, category: 'academic', status: 'Available' },
-      { id: 2, title: 'Basketball Courts', capacity: 10, category: 'sports', status: 'Limited' },
-      { id: 3, title: 'Gym', capacity: 25, category: 'others', status: 'Available' },
-      { id: 4, title: 'Study Lounges', capacity: 6, category: 'academic', status: 'Available' },
-      { id: 5, title: 'Tennis Courts', capacity: 4, category: 'sports', status: 'Limited' },
-      { id: 6, title: 'Computer Lab', capacity: 30, category: 'academic', status: 'Available' },
-      { id: 7, title: 'Art Studio', capacity: 12, category: 'others', status: 'Limited' },
-      { id: 8, title: 'Indoor Sports Hall', capacity: 18, category: 'sports', status: 'Available' },
+      { id: 1, title: 'Library Discussion Rooms', capacity: 8, category: 'academic', status: 'Available', image: '/static/facilities/library.jpg' },
+      { id: 2, title: 'Basketball Courts', capacity: 10, category: 'sports', status: 'Limited', image: '/static/facilities/basketball.jpg' },
+      { id: 3, title: 'Gym', capacity: 25, category: 'others', status: 'Available', image: '/static/facilities/gym.jpg' },
+      { id: 4, title: 'Study Lounges', capacity: 6, category: 'academic', status: 'Available', image: '/static/facilities/study.jpg' },
+      { id: 5, title: 'Tennis Courts', capacity: 4, category: 'sports', status: 'Limited', image: '/static/facilities/tennis.jpg' },
+
     ];
+
 
     const statusClass = (s) => s === 'Available' ? 'status-available' : 'status-limited';
     const categoryTagClass = (c) => c === 'academic' ? 'tag-academic' : c === 'sports' ? 'tag-sports' : 'tag-others';
@@ -128,11 +127,12 @@
       grid.innerHTML = items.map(f => {
         return `
           <article class="facility-card" data-category="${f.category}">
-            <div class="thumb">
+            <div class="thumb" style="background-image:url(${f.image || ''}); background-size:cover; background-position:center;">
               <div class="thumb-overlay">
                 <span class="status-badge ${statusClass(f.status)}">${f.status}</span>
               </div>
             </div>
+
 
             <div class="card-body">
               <span class="category-tag ${categoryTagClass(f.category)}">${categoryLabel(f.category)}</span>
